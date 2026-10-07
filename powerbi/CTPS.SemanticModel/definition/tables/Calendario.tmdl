@@ -1,0 +1,77 @@
+table Calendario
+	lineageTag: cef65675-27aa-48bd-9cc3-cb4bb5ccdb86
+
+	measure 'Registros removidos' = 0
+		formatString: 0
+		lineageTag: e9d11dad-8875-4da0-81f1-39504320c211
+
+	measure 'Datas inválidas' = 0
+		formatString: 0
+		lineageTag: f3e97c75-fa34-4a8a-9148-b6e58b242298
+
+	measure 'Registros fora do período' = 1
+		formatString: 0
+		lineageTag: c852d314-5109-4907-b2aa-2023b61fccbb
+
+	column Date
+		formatString: General Date
+		lineageTag: 43832190-b189-49c5-aa44-cfa1905ee0c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 0e7e9302-dbf1-4994-b1c7-f65ffb96551a
+			defaultHierarchy: LocalDateTable_8cdc96f5-ea6f-4408-a9f3-09871aa04afb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 14e72af4-dfbe-4379-ae14-3da9f969c4f7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesNumero
+		formatString: 0
+		lineageTag: 2e60822b-990d-4ce2-b62c-13459d1e9b86
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MesNumero]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		lineageTag: 33264c1f-6448-47db-ad52-a50d5f673672
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes
+		lineageTag: f5b5d541-6273-4a74-b5a5-1fa0ea1c78b4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnoMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2020, 1, 1), DATE(2023, 1, 31)),
+				    "Ano", YEAR([Date]),
+				    "MesNumero", MONTH([Date]),
+				    "Mes", FORMAT([Date], "MMM"),
+				    "AnoMes", FORMAT([Date], "YYYY-MM")
+				)
+
+	annotation PBI_Id = d74b250c242f4e1e9238c69ce71945b5
+

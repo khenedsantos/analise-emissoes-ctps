@@ -1,0 +1,335 @@
+table ctps_emissoes
+	lineageTag: 81e6442f-e907-40b3-b83f-00ad00254a33
+
+	measure 'Registros publicados' =
+			
+			COUNTROWS(ctps_emissoes)
+		formatString: #,0
+		lineageTag: dfc82afd-2284-4af6-ae52-faa9dff2b03d
+
+	measure 'Primeira via' =
+			
+			CALCULATE(
+			    [Registros publicados],
+			    ctps_emissoes[Tipo Protocolo] = "1ª Via"
+			)
+		formatString: #,0
+		lineageTag: 90d3a15a-baa7-4220-a2bf-a4cfb72fab71
+
+	measure 'Segunda via' =
+			
+			CALCULATE(
+			    [Registros publicados],
+			    ctps_emissoes[Tipo Protocolo] = "2ª Via"
+			)
+		formatString: #,0
+		lineageTag: 8b804208-6997-4a9e-9856-067739d0709b
+
+	measure 'Percentual primeira via' =
+			
+			DIVIDE(
+			    [Primeira via],
+			    [Registros publicados]
+			)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: 8393e5e1-3c78-400b-b054-8bfeedc0ebf5
+
+	column 'Tipo Protocolo'
+		dataType: string
+		lineageTag: b3e1bc9b-ab0b-4557-aa64-902616d51fc0
+		summarizeBy: none
+		sourceColumn: Tipo Protocolo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Protocolo'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 83b12264-b9b8-43f4-86a9-bc6d6a0a630b
+		summarizeBy: none
+		sourceColumn: Data Protocolo
+
+		variation Variation
+			isDefault
+			relationship: 2de5f89c-9f40-40cf-9b3f-89b0293cb2f0
+			defaultHierarchy: LocalDateTable_8533b22c-de27-4d23-b662-761f2ab8e7bb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tipo CTPS'
+		dataType: string
+		lineageTag: c5756e04-a48e-4c4a-b864-7015d11331b3
+		summarizeBy: none
+		sourceColumn: Tipo CTPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data CTPS Gerada'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fb5e653b-17ce-4394-ad72-2609d249818c
+		summarizeBy: none
+		sourceColumn: Data CTPS Gerada
+
+		variation Variation
+			isDefault
+			relationship: 4c3008d5-98eb-4c7a-8c12-215a9a67cf9e
+			defaultHierarchy: LocalDateTable_58f308e1-2840-4f6c-9e28-24c33ce04a75.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Nome Órgão'
+		dataType: string
+		lineageTag: c5777c2c-5e4f-49ab-9c65-d614625aa155
+		summarizeBy: none
+		sourceColumn: Nome Órgão
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Município Órgão'
+		dataType: string
+		lineageTag: 4ebdb8b9-ba18-471f-9fe2-7fb0ef2b23e9
+		summarizeBy: none
+		sourceColumn: Nome Município Órgão
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sigla UF Órgão'
+		dataType: string
+		lineageTag: 5e3de9ab-1c15-4acc-bb93-1e17b0dad67c
+		summarizeBy: none
+		sourceColumn: Sigla UF Órgão
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Emissão'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 44bf6af9-a7cf-40d5-9a63-67f014d8f5c1
+		summarizeBy: none
+		sourceColumn: Data Emissão
+
+		variation Variation
+			isDefault
+			relationship: ca0d10e4-231d-4dbe-b8c2-f19bbcfc4834
+			defaultHierarchy: LocalDateTable_cdb19a8b-821d-4d23-b0cf-615d921ab6f5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Sexo
+		dataType: string
+		lineageTag: 7e23e267-6477-48a1-9ee8-c60d2b6031c1
+		summarizeBy: none
+		sourceColumn: Sexo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nível Escolaridade'
+		dataType: string
+		lineageTag: d3431a2e-dd63-4759-afdc-d9274c0c0048
+		summarizeBy: none
+		sourceColumn: Nível Escolaridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Raça e Cor'
+		dataType: string
+		lineageTag: 2a89a3bc-052b-4e38-8dbd-48ecdcfba7f4
+		summarizeBy: none
+		sourceColumn: Raça e Cor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado Civil'
+		dataType: string
+		lineageTag: 56a4ba81-6528-43d6-aea3-3b1d3f5b0691
+		summarizeBy: none
+		sourceColumn: Estado Civil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Nascimento'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5c74b710-1c0b-409c-a352-c334def07311
+		summarizeBy: none
+		sourceColumn: Data Nascimento
+
+		variation Variation
+			isDefault
+			relationship: 4a363db4-1fa2-4bab-8bf8-09f618adfdd5
+			defaultHierarchy: LocalDateTable_c2e55b2f-9aa4-4190-8df9-af831583113c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tipo Cidadania'
+		dataType: string
+		lineageTag: 32109757-1796-4b0a-b83b-69a29eb0b0df
+		summarizeBy: none
+		sourceColumn: Tipo Cidadania
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do País'
+		dataType: string
+		lineageTag: e9c218af-d5eb-44c2-8ecd-976cff4f9028
+		summarizeBy: none
+		sourceColumn: Nome do País
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descrição Nacionalidade'
+		dataType: string
+		lineageTag: 773a2f15-dc97-4b12-8cd0-f69d67644c55
+		summarizeBy: none
+		sourceColumn: Descrição Nacionalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Município Nascimento'
+		dataType: string
+		lineageTag: 909db0ba-b6b5-4d54-b642-ed32e9958c7d
+		summarizeBy: none
+		sourceColumn: Nome Município Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sigla UF Nascimento'
+		dataType: string
+		lineageTag: ac4eb6a2-ad3b-439c-ab7f-7caf2f496f37
+		summarizeBy: none
+		sourceColumn: Sigla UF Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column arquivo_fonte
+		dataType: string
+		lineageTag: 2f84f09d-97f5-4de9-903c-db7cd3d59c3e
+		summarizeBy: none
+		sourceColumn: arquivo_fonte
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_protocolo_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 58c1a39d-634a-409c-925f-871a7d1be5c8
+		summarizeBy: none
+		sourceColumn: data_protocolo_date
+
+		variation Variation
+			isDefault
+			relationship: deeb4346-dbbb-4cbd-a5ab-d86d26d817b5
+			defaultHierarchy: LocalDateTable_82c7b97d-7965-4523-90a6-52db3c4bfb36.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_ctps_gerada_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 00fa8d43-ced4-4e62-9655-787b51398c3e
+		summarizeBy: none
+		sourceColumn: data_ctps_gerada_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_emissão_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 658ede5a-7f83-4a6f-a048-cc2b58658cfd
+		summarizeBy: none
+		sourceColumn: data_emissão_date
+
+		variation Variation
+			isDefault
+			relationship: 92f31c77-2b06-4df4-a64e-0bbd1290fe31
+			defaultHierarchy: LocalDateTable_d51b93b3-91a0-493a-8461-4281726992ba.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_nascimento_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7a8b49b1-8b25-422f-8bad-d22eccf3ef34
+		summarizeBy: none
+		sourceColumn: data_nascimento_date
+
+		variation Variation
+			isDefault
+			relationship: aa932dac-03ac-48f7-bdf4-24d357ed301f
+			defaultHierarchy: LocalDateTable_e7c52573-c52d-41df-a76e-de86d7e42bd1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column periodo_emissao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f269728b-48f6-45d2-a53a-9d19bbfcbe46
+		summarizeBy: none
+		sourceColumn: periodo_emissao
+
+		variation Variation
+			isDefault
+			relationship: b6575bbe-54eb-4350-8cc2-098b4334c74e
+			defaultHierarchy: LocalDateTable_384eaab3-52d4-4a7b-a4ce-6042866d66fb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano_emissao
+		dataType: int64
+		formatString: 0
+		lineageTag: dab7bc75-5216-4d60-9997-432607b04e45
+		summarizeBy: sum
+		sourceColumn: ano_emissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_emissao
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a1110d6-1d7d-4b71-99fa-69b55cbfaa6c
+		summarizeBy: sum
+		sourceColumn: mes_emissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column registro_id
+		dataType: string
+		lineageTag: a12e0245-7fc5-48f0-be92-c12204c67568
+		summarizeBy: none
+		sourceColumn: registro_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ctps_emissoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Khened docs\analise-emissoes-ctps-main\data\processed\ctps_emissoes.csv"),[Delimiter=",", Columns=27, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Tipo Protocolo", type text}, {"Data Protocolo", type date}, {"Tipo CTPS", type text}, {"Data CTPS Gerada", type date}, {"Nome Órgão", type text}, {"Nome Município Órgão", type text}, {"Sigla UF Órgão", type text}, {"Data Emissão", type date}, {"Sexo", type text}, {"Nível Escolaridade", type text}, {"Raça e Cor", type text}, {"Estado Civil", type text}, {"Data Nascimento", type date}, {"Tipo Cidadania", type text}, {"Nome do País", type text}, {"Descrição Nacionalidade", type text}, {"Nome Município Nascimento", type text}, {"Sigla UF Nascimento", type text}, {"arquivo_fonte", type text}, {"data_protocolo_date", type date}, {"data_ctps_gerada_date", type date}, {"data_emissão_date", type date}, {"data_nascimento_date", type date}, {"periodo_emissao", type date}, {"ano_emissao", Int64.Type}, {"mes_emissao", Int64.Type}, {"registro_id", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
