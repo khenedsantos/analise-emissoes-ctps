@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "CTPS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b8f000d9-3551-4e57-84e9-9ca487bd262e"
+  }
+}

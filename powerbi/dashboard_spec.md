@@ -1,38 +1,52 @@
-# Dashboard entregue e reconciliação das páginas
+# Dashboard Power BI — cinco páginas
 
-O [PBIX](dashboard_ctps_2020_2022.pbix) foi construído manualmente no Power BI Desktop e contém quatro páginas. Este documento descreve a entrega existente. As capturas e o binário não foram editados na integração.
+Este documento descreve o dashboard final aprovado, representado nas cinco screenshots abaixo e no projeto PBIP/PBIR versionado. O canvas permanece em 1920 × 1080.
 
-| Página | Conteúdo | Contexto observado |
+O [PBIX final](dashboard_ctps_2020_2022.pbix) e o [projeto PBIP](CTPS.pbip) contêm as cinco páginas na ordem apresentada abaixo. As definições de relatório e os recursos incorporados no PBIX correspondem ao PBIR versionado em `CTPS.Report/`. O PBIP referencia `CTPS.SemanticModel/`, cujas definições foram copiadas sem alterações.
+
+## Páginas e finalidade
+
+| Página | Finalidade | Interação e contexto |
 |---|---|---|
-| [Visão Geral](01_visao_geral.png) | Cartões, Top 10 UFs, protocolo e evolução mensal | Ano = 2020, 2021 e 2022; protocolo e UF = Todos |
-| [Perfil dos Registros](02_perfil_registros.png) | Escolaridade, sexo, raça/cor e cidadania | Ano = 2020, 2021 e 2022; protocolo e UF = Todos |
-| [Qualidade e Metodologia](03_qualidade_metodologia.png) | Processados, removidos, datas inválidas, fora do período e limitações | Base completa para controle de qualidade |
-| [Revisão Analítica](04_revisao_analitica.png) | Síntese temporal, regional, protocolo e perfil | Texto descritivo da análise; não deve ser tratado como medida dinâmica |
+| [1. Visão Geral](01_visao_geral.png) | Apresentar volume, concentração temporal, Top 5 UFs, protocolo em barra 100% e evolução mensal | Filtros Período, Protocolo e UF do órgão; destaques documentais identificados |
+| [2. Perfil dos Registros](02_perfil_registros.png) | Explorar Escolaridade Top 8, raça/cor, sexo em barra 100% e cidadania | Os mesmos três filtros; faixa de perfil predominante fixa para 2020–2022 |
+| [3. Qualidade dos Dados](03_qualidade_dados.png) | Mostrar integridade, rastreabilidade, recorte analítico e limites de interpretação | Base completa preservada; sem filtros operantes |
+| [4. Síntese Analítica](04_sintese_analitica.png) | Reunir os achados temporais, regionais, de protocolo e de perfil com ressalvas metodológicas | Conteúdo fixo/documental de 2020–2022; sem filtros operantes |
+| [5. Recomendações Executivas](05_recomendacoes_executivas.png) | Traduzir os achados em prioridades de uso, monitoramento e aprofundamento | Conteúdo fixo/documental baseado em 2020–2022; sem filtros operantes |
 
-## Diferença entre os totais
+## Base completa e recorte analítico
 
-A base processada mantém **485.430** linhas. Uma delas tem `Data CTPS Gerada = 2023-01`, na fonte oficial `dados_ctps_2022.xlsx`. As tabelas analíticas do pipeline e a view SQL usam **485.429** linhas em 2020–2022.
+A fonte mantém **485.430 registros**. Um deles tem `Data CTPS Gerada = 2023-01` no arquivo oficial `dados_ctps_2022.xlsx`, com protocolo e emissão em dezembro de 2022. Ele permanece na base e fica fora apenas das análises de 2020–2022, que abrangem **485.429 registros**.
 
-| Indicador | Base completa preservada | Recorte analítico do dashboard: 2020–2022 |
+| Indicador | Base completa preservada | Recorte 2020–2022 |
 |---|---:|---:|
 | Registros | 485.430 | 485.429 |
 | 1ª via | 351.527 | 351.527 |
 | 2ª via | 133.903 | 133.902 |
-| Masculino | 251.310 | 251.309 |
-| Feminino | 234.120 | 234.120 |
-| Pardo | 303.673 | 303.672 |
-| Brasileiro Nato | 478.833 | 478.832 |
-| 1º GRAU INCOMP. 5ª A 8ª SÉRIE INCOMP. | 68.133 | 68.132 |
-| AC | 2.135 | 2.134 |
 
-A captura de **Perfil dos Registros** mostra **485.429 registros**, sendo **251.309 masculinos (51,77%)** e **234.120 femininos (48,23%)**, com subtítulo 2020–2022. O layout do PBIX confirma a seleção de 2020, 2021 e 2022 nessa página e em Visão Geral. As duas páginas analíticas estão visualmente e numericamente alinhadas ao recorte das tabelas e do SQL.
+Os insights, as tabelas analíticas do pipeline e as consultas SQL deste repositório usam o recorte 2020–2022. Os controles de qualidade e a contagem de repetições usam a base completa; nenhuma linha foi removida da base processada.
 
-Os 485.430 exibidos na página de qualidade são intencionais: ela controla a preservação da base, com **0 removidos**, **0 datas inválidas** e **1 registro fora do período**. Já o recorte analítico exclui esse registro somente das agregações.
+## Filtros e referências fixas
 
-## Uso e interpretação
+- **Visão Geral e Perfil:** o PBIR apresenta segmentadores de Período (`Calendario.Ano`), Protocolo e UF do órgão, com 2020, 2021 e 2022 selecionados. Gráficos e indicadores exploratórios usam as medidas existentes; Escolaridade mantém Top 8 e o ranking regional, Top 5.
+- **Destaques documentais:** a concentração de 96,9%, os totais anuais de 470.560, 11.707 e 3.162, o Top 5 de 61,6% e a faixa de perfil predominante são referências do período completo. Não devem ser interpretados como resultados dinâmicos de seleções.
+- **Qualidade:** o PBIR não contém segmentadores, filtros de página ou filtros de visual; não foram encontrados grupos de sincronização. Os quatro indicadores continuam vinculados às medidas existentes: 485.430 processados, 0 removidos, 0 datas inválidas e 1 fora do período. A página não oferece filtragem exploratória.
+- **Síntese e Recomendações:** o PBIR contém somente textos e formas, sem consultas de dados ou segmentadores. A ausência de filtros operantes e a natureza fixa são intencionais: o conteúdo não se recalcula quando dados ou seleções mudam.
 
-Visão Geral e Perfil permitem explorar ano, tipo de protocolo e UF. O ranking usa a UF do órgão emissor. Não representa residência, população ou desempenho do mercado de trabalho. Categorias históricas são mantidas conforme a fonte, inclusive `IG`, sem significado presumido.
+## Qualidade e rastreabilidade
 
-A página Revisão Analítica contém uma narrativa fixa sobre os dados; seu texto não deve ser tomado como atualização automática após mudanças em filtros ou na base.
+As **25.844 ocorrências repetidas** são linhas excedentes após a primeira ocorrência de cada combinação das 18 colunas de negócio, preservadas na base completa. Não representam duplicatas confirmadas, pessoas ou combinações únicas. Sem identificador individual, recorrências não são removidas automaticamente.
 
-[modelo.md](modelo.md) documenta carregamento, definição de repetições e limites da inspeção. [medidas.dax](medidas.dax) e [PowerQuery.m](PowerQuery.m) são referências técnicas de apoio; não foram usadas para sobrescrever o modelo manual.
+Os **12 registros com UF original IG** permanecem com a categoria da fonte. O fluxo documentado é: **5 XLSX oficiais → manifesto com URL, tamanho e SHA-256 → Python/pandas → CSV + SQLite → SQL → Power BI**. Esquema, datas e quantidade de registros são validados no processamento.
+
+## Síntese e recomendações
+
+A Síntese apresenta **96,9%** de concentração temporal, **61,6%** regional, **72,4%** de predominância da 1ª via e **62,6%** para Pardo, principal categoria de raça/cor declarada. Os textos descrevem registros e os limites de cobertura da publicação.
+
+Recomendações Executivas organiza três prioridades P1 — comparação temporal, continuidade da publicação e controles de qualidade — e duas P2 — contextualização territorial e enriquecimento analítico antes de conclusões sobre mercado de trabalho. São prioridades de uso e investigação dos dados, não recomendações de política pública.
+
+O fechamento destaca que a qualidade da decisão depende da cobertura, semântica e confiabilidade da fonte. Emissões de CTPS não medem pessoas únicas, emprego, contratação, desemprego ou formalização, nem sustentam causalidade econômica. UF corresponde ao órgão emissor, não necessariamente à residência.
+
+## Referências técnicas
+
+[modelo.md](modelo.md), [medidas.dax](medidas.dax) e [PowerQuery.m](PowerQuery.m) são referências de apoio. Esta atualização é exclusivamente documental; não altera o modelo validado, suas consultas ou cálculos.

@@ -1,0 +1,30 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["ctps_emissoes"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table ctps_emissoes
+ref table DateTableTemplate_15cf258c-2ba1-4641-ad47-6731ffc7de7e
+ref table LocalDateTable_8533b22c-de27-4d23-b662-761f2ab8e7bb
+ref table LocalDateTable_58f308e1-2840-4f6c-9e28-24c33ce04a75
+ref table LocalDateTable_cdb19a8b-821d-4d23-b0cf-615d921ab6f5
+ref table LocalDateTable_c2e55b2f-9aa4-4190-8df9-af831583113c
+ref table LocalDateTable_82c7b97d-7965-4523-90a6-52db3c4bfb36
+ref table LocalDateTable_d51b93b3-91a0-493a-8461-4281726992ba
+ref table LocalDateTable_e7c52573-c52d-41df-a76e-de86d7e42bd1
+ref table LocalDateTable_384eaab3-52d4-4a7b-a4ce-6042866d66fb
+ref table Calendario
+ref table LocalDateTable_8cdc96f5-ea6f-4408-a9f3-09871aa04afb
+
+ref cultureInfo pt-BR
+
